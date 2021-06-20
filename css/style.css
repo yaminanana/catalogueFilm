@@ -1,0 +1,54 @@
+body{
+    background-color: orange;
+    margin: 10px;
+    width: 100%;
+    font-family: sans-serif;
+}
+
+h1{
+    color: white;
+    margin-left: 100px;
+}
+
+div#catalogue{
+    border: 1px solid white;
+    padding: 5px;
+    position: absolute;
+    left: 250px;
+    top: 100px;
+    width: 70%;
+    max-width: 1000px ;
+    color: white;
+}
+
+div.center{
+    text-align: center;
+    margin: 0 auto;
+}
+
+div#catalogue div{
+text-align: left;
+}
+
+div#selection {
+    width: 215px;
+    height: 750px;
+    position: absolute;
+    left: 10px;
+}
+
+div#selection>div{
+    margin: 5px;
+    border: solid thin rgba(55, 55, 55, 0.5);
+    height: 352px;
+    position: relative;
+}
+
+div#selection>div span:first-child {
+font-size: 100px;
+color: rgb(80, 80, 80);
+position: relative;
+top: 100px;
+
+}
+
