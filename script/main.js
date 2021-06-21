@@ -37,3 +37,39 @@ for(let i = 0;i < filmData.length; i++){
         document.getElementById("films").appendChild(film);
      }
 }
+// récupère la valeur de la recherche
+let input = document.getElementsByTagName("input");
+input[0].addEventListener("keyup", recherche);
+input[1].addEventListener("mouseup", checkbox);
+
+
+function recherche(event){
+    let inputValue = event.target.value;
+    inputValue = inputValue.toLowerCase();
+    console.log(inputValue);
+   
+        //input n'est pas vide
+        for(let i = 0; i<filmData.length;i++){
+           let titre = filmData[i].title;
+           titre = titre.toLowerCase();
+           let film = document.getElementById(i+"-film");
+
+           if (titre.includes(inputValue) == false){
+            film.style.display = "none";
+           }else{
+               film.style.display = "inline-block";
+           }
+        }
+    
+
+}//fin fonction recherche
+
+function checkbox(event){
+    let details = document.getElementById("details");
+    console.log(event.target.checked);
+    if(event.target.checked){
+       details.style.display = "none";
+    }else{
+        details.style.display = "block";
+    }
+}
