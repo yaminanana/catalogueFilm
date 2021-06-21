@@ -8,6 +8,7 @@ window.onload = function(){
     
     </div>*/
 
+
 for(let i = 0;i < filmData.length; i++){
     createFilm(i);
 }
@@ -39,8 +40,11 @@ for(let i = 0;i < filmData.length; i++){
 }
 // récupère la valeur de la recherche
 let input = document.getElementsByTagName("input");
+let films = document.getElementById("films");
 input[0].addEventListener("keyup", recherche);
 input[1].addEventListener("mouseup", checkbox);
+films.addEventListener("mouseover", survolFilm);
+films.addEventListener("mouseout", finSurvol);
 
 
 function recherche(event){
@@ -72,4 +76,27 @@ function checkbox(event){
     }else{
         details.style.display = "block";
     }
+}
+
+function survolFilm(event){
+    let elementSurvol = event.target.parentNode;//récupére l'élément qui est survolé
+    let identifiantFilm = elementSurvol.id;
+    let position;
+    if(identifiantFilm == "catalog"){
+        return;
+    }else if(identifiantFilm.length == 6){
+        position = identifiantFilm[0];
+    }else if(identifiantFilm.length == 7){
+        position = identifiantFilm[0]+ identifiantFilm[1];
+    }else {
+        return;
+    }
+
+    let descriptionFilm = filmData[position].text;
+    document.getElementById("details").innerHTML = descriptionFilm;
+  //console.log(description);
+}//fin survolFilm
+
+function finSurvol(event){
+    document.getElementById("details").innerHTML = "";
 }
