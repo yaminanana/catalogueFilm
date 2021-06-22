@@ -41,11 +41,13 @@ for(let i = 0;i < filmData.length; i++){
 // récupère la valeur de la recherche
 let input = document.getElementsByTagName("input");
 let films = document.getElementById("films");
+let selection = document.getElementById("selection");
 input[0].addEventListener("keyup", recherche);
 input[1].addEventListener("mouseup", checkbox);
 films.addEventListener("mouseover", survolFilm);
 films.addEventListener("mouseout", finSurvol);
 films.addEventListener("click", selectionFilm);
+selection.addEventListener("click", clickSelection);
 
 function recherche (event){
     let inputValue = event.target.value;
@@ -107,6 +109,10 @@ function selectionFilm (event){
     let film = event.target.parentNode;
     let select1 = document.getElementById("selection1");
     let select2 = document.getElementById("selection2");
+    film.addEventListener("mouseover", survolFilm);
+    film.addEventListener("mouseout", finSurvol );
+    
+    
     let select1Child = select1.childNodes;//récupère tous les noeuds(éléments) enfants de la partie selection1
     let select2Child = select2.childNodes;
 
@@ -126,3 +132,19 @@ function selectionFilm (event){
 
 
 }//fin fonction selectionFilm
+
+function clickSelection (event){
+    let elementClicke = event.target;
+    let film = elementClicke.parentNode;
+
+    let select = film.parentNode;
+    let selectChild = select.childNodes;
+
+    if(selectChild[0].className == "film"){
+        let copyFilm = selectChild[0];
+        select.removeChild(copyFilm);
+        document.getElementById("films").appendChild(copyFilm);
+    }
+
+    //console.log(selectChild);
+}
