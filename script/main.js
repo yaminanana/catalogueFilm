@@ -45,12 +45,14 @@ input[0].addEventListener("keyup", recherche);
 input[1].addEventListener("mouseup", checkbox);
 films.addEventListener("mouseover", survolFilm);
 films.addEventListener("mouseout", finSurvol);
+films.addEventListener("click", selectionFilm);
 
-
-function recherche(event){
+function recherche (event){
     let inputValue = event.target.value;
     inputValue = inputValue.toLowerCase();
+
     console.log(inputValue);
+
    
         //input n'est pas vide
         for(let i = 0; i<filmData.length;i++){
@@ -66,7 +68,7 @@ function recherche(event){
         }
     
 
-}//fin fonction recherche
+    }  //fin fonction recherche
 
 function checkbox(event){
     let details = document.getElementById("details");
@@ -99,4 +101,28 @@ function survolFilm(event){
 
 function finSurvol(event){
     document.getElementById("details").innerHTML = "";
-}
+}//fin fonction finSurvol
+
+function selectionFilm (event){
+    let film = event.target.parentNode;
+    let select1 = document.getElementById("selection1");
+    let select2 = document.getElementById("selection2");
+    let select1Child = select1.childNodes;//récupère tous les noeuds(éléments) enfants de la partie selection1
+    let select2Child = select2.childNodes;
+
+    if(select1Child.length == 1){
+        //la partie selection1 est vide
+        select1.insertBefore(film, select1Child[0]);
+    }else if (select2Child.length == 1) {
+        //la partie selection2 est vide
+        select2.insertBefore(film, select2Child[0]);
+    }else{
+        alert("Désolé vous avez déjà choisi deux films !");
+    }
+
+    //console.log(select2Child);
+
+
+
+
+}//fin fonction selectionFilm
